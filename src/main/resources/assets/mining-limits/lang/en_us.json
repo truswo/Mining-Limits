@@ -1,0 +1,37 @@
+{
+    "modmenu.descriptionTranslation.mining-limits": "Adds a configurable barrier to where the player can mine.",
+
+  "mining-limits.config":  "Mining Limits Settings",
+
+  "mining-limits.config.shouldRun.prefix": "§lMain Configs:§r",
+    "mining-limits.config.shouldRun": "  Enabled:",
+    "mining-limits.config.shouldRun.desc": "Set to §oFalse§r to turn off the mod.",
+    "mining-limits.config.hasLowHeight": "  Lowest height mining limit",
+    "mining-limits.config.hasLowHeight.desc": "Enables/Disables a low height limit for mining",
+    "mining-limits.config.hasHighHeight": "  Highest height mining limit",
+    "mining-limits.config.hasHighHeight.desc": "Enables/Disables a high height limit for mining",
+    "mining-limits.config.isChunkLimited": "  Chunk mining limit.",
+    "mining-limits.config.isChunkLimited.desc": "Limits mining to a single chunk. (lowHeight and highHeight still applies)",
+
+  "mining-limits.config.lowHeight.prefix": "§lPositioning:§r",
+    "mining-limits.config.lowHeight": "   Lowest height allowed:",
+    "mining-limits.config.lowHeight.desc": "Lowest height the player can mine.",
+    "mining-limits.config.highHeight": "   Highest height allowed:",
+    "mining-limits.config.highHeight.desc": "Highest height the player can mine.",
+
+    "mining-limits.config.limitedChunkX.prefix": "   §lChunk:§r",
+      "mining-limits.config.limitedChunkX": "     X:",
+      "mining-limits.config.limitedChunkX.desc": "Coordinates of a block inside of that chunk. (Chunk position is automatically converted from that block's position)",
+      "mining-limits.config.limitedChunkZ": "     Z:",
+      "mining-limits.config.limitedChunkZ.desc": "Coordinates of a block inside of that chunk. (Chunk position is automatically converted from that block's position)",
+
+  "mining-limits.config.showOutline.prefix": "§lOther Configs:§r",
+    "mining-limits.config.showOutline": "  Show block's outline",
+    "mining-limits.config.showOutline.desc": "Renders an colored outline on blocks outside limits.",
+    "mining-limits.config.outlineColor": "  Outline color",
+
+  "mining-limits.message.highHeight": "§cBlock height is over mining limits. (Too High)",
+  "mining-limits.message.lowHeight": "§cBlock height is under mining limits. (Too Low)",
+  "mining-limits.message.limitedChunk": "§cBlock is outside chunk borders. (Outside Borders)",
+  "mining-limits.message.other": "§cBlock is outside of mining limits. (No Provided Reason)"
+}

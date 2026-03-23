@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "mining-limits",
+  "version": "${version}",
+  "name": "Mining Limits",
+  "description": "Adds a configurable limit to where the player can mine.",
+  "authors": [
+    "Lucy (truswo/wzhazy)"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/accidental-sweep",
+    "sources": "https://github.com/truswo/Accidental-Sweep",
+    "issues": "https://github.com/truswo/Accidental-Sweep/issues"
+  },
+
+  "license": "MIT",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "me.truswo.miningLimits.client.MiningLimitsDataGenerator"
+    ],
+    "client": [
+      "me.truswo.miningLimits.client.MiningLimitsClient"
+    ],
+    "main": [
+      "me.truswo.miningLimits.MiningLimits"
+    ]
+  },
+  "mixins": [
+    "mining-limits.mixins.json",
+    {
+      "config": "mining-limits.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": [
+      "1.21.9",
+      "1.21.10"
+    ],
+
+    "fzzy_config": ">=0.4.3"
+  },
+  "suggests": {
+    "modmenu": ">=17.0.0"
+  },
+  "custom": {
+    "fzzy_config": [
+      "mining-limits"
+    ],
+    "modmenu": {
+      "links": {
+        "modmenu.github_releases": "https://github.com/truswo/Mining-Limits",
+        "modmenu.modrinth": "https://modrinth.com/project/mQGRdDm4"
+      }
+    }
+  }
+}
