@@ -16,12 +16,12 @@ Adds a configurable barrier to where the player can mine.
 ## Features
 
 - **Adds a configurable border for the highest height the player can mine**
-    - Let you mine only up to a certain height (ex: allows you to only mine up to layer 70, any layer higher than 70 would not be minable)
+    - Lets you mine only up to a certain height (ex: allows you to only mine up to layer 70, any layer higher than 70 would not be minable)
 
     - This can be turned off in settings
 
 - **Adds a configurable border for the lowest height the player can mine**
-    - Let you mine only down to a certain height (ex: allows you to only mine down to layer -10, any layer lower than -10 would not be minable)
+    - Lets you mine only down to a certain height (ex: allows you to only mine down to layer -10, any layer lower than -10 would not be minable)
 
     - This can be turned off in settings
 
