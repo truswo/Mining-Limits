@@ -33,7 +33,7 @@ Adds a configurable barrier to where the player can mine.
 - **Allows you to have a different outline color for blocks outside of limits**
     - You can choose any color you'd want for the outline, the color and opacity are completely customizable
 
-    - _Note: This may interfere with mods that change the block's outline (ex: [Highlight](https://modrinth.com/project/Vz96hXMh)), so it also has an option to turn this off_
+    - _Note: This may interfere with mods that change the block's outline, so it also has an option to turn this off_
 
 - **[Mod Menu](https://modrinth.com/project/mOgUt4GM) configuration support**
 

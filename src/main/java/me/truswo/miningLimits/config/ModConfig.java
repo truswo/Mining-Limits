@@ -24,6 +24,7 @@ public class ModConfig extends Config {
     public int limitedChunkZ;
 
     @ConfigGroup.Pop
+    public boolean shiftBypass = true;
     public boolean showOutline = true;
     public ValidatedColor outlineColor = new ValidatedColor(255, 0, 0, 64);
 }

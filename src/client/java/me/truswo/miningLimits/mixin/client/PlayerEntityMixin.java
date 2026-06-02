@@ -20,29 +20,32 @@ public abstract class PlayerEntityMixin {
     private void isBlockBreakingRestricted(World world, BlockPos pos, GameMode gameMode, CallbackInfoReturnable<Boolean> CIR) {
         var config = MiningLimits.CONFIG;
 
+        var plrEntity = ((PlayerEntity)(Object)this);
+
         var posY = pos.getY();
 
         var limitedChunk = world.getWorldChunk(BlockPos.fromLong(BlockPos.asLong(config.limitedChunkX, 0, config.limitedChunkZ)));
         var posChunk = world.getWorldChunk(pos);
 
-
         if (config.shouldRun && gameMode.isSurvivalLike() && (limitedChunk.getPos().x != 0 || posChunk.getPos().x != 0)) {
 //            MiningLimits.LOGGER.info("1 " + limitedChunk.getPos());
 //            MiningLimits.LOGGER.info("2 " + posChunk.getPos());
             if (
-                (config.hasHighHeight && posY > config.highHeight || config.hasLowHeight && posY < config.lowHeight)
-                || (config.isChunkLimited && !posChunk.equals(limitedChunk))
+                ((config.hasHighHeight && posY > config.highHeight || config.hasLowHeight && posY < config.lowHeight)
+                || (config.isChunkLimited && !posChunk.equals(limitedChunk)))
             ) {
-                CIR.setReturnValue(true);
-
-                if (config.hasHighHeight && posY > config.highHeight) {
-                    ((PlayerEntity)(Object)this).sendMessage(Text.translatable("mining-limits.message.highHeight"), true);
-                } else if (config.hasLowHeight && posY < config.lowHeight) {
-                    ((PlayerEntity)(Object)this).sendMessage(Text.translatable("mining-limits.message.lowHeight"), true);
-                } else if (config.isChunkLimited && !posChunk.equals(limitedChunk)) {
-                    ((PlayerEntity)(Object)this).sendMessage(Text.translatable("mining-limits.message.limitedChunk"), true);
-                } else {
-                    ((PlayerEntity)(Object)this).sendMessage(Text.translatable("mining-limits.message.other"), true);
+                if (!config.shiftBypass || (config.shiftBypass && !plrEntity.isSneaking())
+                ) {
+                    CIR.setReturnValue(true);
+                    if (config.hasHighHeight && posY > config.highHeight) {
+                        plrEntity.sendMessage(Text.translatable("mining-limits.message.highHeight"), true);
+                    } else if (config.hasLowHeight && posY < config.lowHeight) {
+                        plrEntity.sendMessage(Text.translatable("mining-limits.message.lowHeight"), true);
+                    } else if (config.isChunkLimited && !posChunk.equals(limitedChunk)) {
+                        plrEntity.sendMessage(Text.translatable("mining-limits.message.limitedChunk"), true);
+                    } else {
+                        plrEntity.sendMessage(Text.translatable("mining-limits.message.other"), true);
+                    }
                 }
             }
         }

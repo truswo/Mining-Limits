@@ -1,6 +1,7 @@
 package me.truswo.miningLimits.mixin.client;
 
 import me.truswo.miningLimits.MiningLimits;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexRendering;
 import net.minecraft.client.render.WorldRenderer;
@@ -27,6 +28,10 @@ public class WorldRendererMixin {
     @Final
     private static Logger LOGGER;
 
+    @Shadow
+    @Final
+    private MinecraftClient client;
+
     @Inject(
             method = "drawBlockOutline",
             at = @At("HEAD"), cancellable = true
@@ -38,10 +43,12 @@ public class WorldRendererMixin {
             BlockPos blockPos = state.pos();
 
             assert world != null;
+            assert client.player != null;
+
             var limitedChunk = world.getWorldChunk(BlockPos.fromLong(BlockPos.asLong(config.limitedChunkX, 0, config.limitedChunkZ)));
             var posChunk = world.getWorldChunk(blockPos);
 
-            if (config.shouldRun) {
+            if ((config.shouldRun && !config.shiftBypass) || (config.shouldRun && !client.player.isSneaking())) {
                 if (
                         (config.hasHighHeight && blockPos.getY() > config.highHeight || config.hasLowHeight && blockPos.getY() < config.lowHeight)
                                 || (config.isChunkLimited && !posChunk.equals(limitedChunk))
