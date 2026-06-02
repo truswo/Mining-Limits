@@ -10,7 +10,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,17 +25,13 @@ public class WorldRendererMixin {
 
     @Shadow
     @Final
-    private static Logger LOGGER;
-
-    @Shadow
-    @Final
     private MinecraftClient client;
 
     @Inject(
             method = "drawBlockOutline",
             at = @At("HEAD"), cancellable = true
     )
-    private void drawBlockOutline(MatrixStack matrices, VertexConsumer vertexConsumer, double x, double y, double z, OutlineRenderState state, int i, CallbackInfo CIR) {
+    private void drawBlockOutline(MatrixStack matrices, VertexConsumer vertexConsumer, double x, double y, double z, OutlineRenderState state, int color, float lineWidth, CallbackInfo CIR) {
         var config = MiningLimits.CONFIG;
 
         if (config.showOutline) {
@@ -54,7 +49,7 @@ public class WorldRendererMixin {
                                 || (config.isChunkLimited && !posChunk.equals(limitedChunk))
                 ) {
                     //MiningLimits.LOGGER.info("red outline");
-                    VertexRendering.drawOutline(matrices, vertexConsumer, state.shape(), blockPos.getX() - x, blockPos.getY() - y, blockPos.getZ() - z, config.outlineColor.toInt());
+                    VertexRendering.drawOutline(matrices, vertexConsumer, state.shape(), blockPos.getX() - x, blockPos.getY() - y, blockPos.getZ() - z, config.outlineColor.toInt(), 2.5f);
                     CIR.cancel();
                 }
             }
