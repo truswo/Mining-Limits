@@ -34,11 +34,11 @@ public class WorldRendererMixin {
     private void drawBlockOutline(MatrixStack matrices, VertexConsumer vertexConsumer, double x, double y, double z, OutlineRenderState state, int color, float lineWidth, CallbackInfo CIR) {
         var config = MiningLimits.CONFIG;
 
-        if (config.showOutline) {
-            BlockPos blockPos = state.pos();
+        assert world != null;
+        assert client.player != null;
 
-            assert world != null;
-            assert client.player != null;
+        if (config.showOutline && !client.player.isInCreativeMode()) {
+            BlockPos blockPos = state.pos();
 
             var limitedChunk = world.getWorldChunk(BlockPos.fromLong(BlockPos.asLong(config.limitedChunkX, 0, config.limitedChunkZ)));
             var posChunk = world.getWorldChunk(blockPos);
