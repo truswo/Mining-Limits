@@ -49,7 +49,7 @@ public class WorldRendererMixin {
                                 || (config.isChunkLimited && !posChunk.equals(limitedChunk))
                 ) {
                     //MiningLimits.LOGGER.info("red outline");
-                    VertexRendering.drawOutline(matrices, vertexConsumer, state.shape(), blockPos.getX() - x, blockPos.getY() - y, blockPos.getZ() - z, config.outlineColor.toInt(), 2.5f);
+                    VertexRendering.drawOutline(matrices, vertexConsumer, state.shape(), blockPos.getX() - x, blockPos.getY() - y, blockPos.getZ() - z, config.outlineColor.toInt(), 1.5f);
                     CIR.cancel();
                 }
             }
