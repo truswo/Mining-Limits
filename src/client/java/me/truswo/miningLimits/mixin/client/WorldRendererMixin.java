@@ -1,16 +1,17 @@
 package me.truswo.miningLimits.mixin.client;
 
 import me.truswo.miningLimits.MiningLimits;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexRendering;
 import net.minecraft.client.render.WorldRenderer;
-import net.minecraft.client.render.state.OutlineRenderState;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,36 +27,44 @@ public class WorldRendererMixin {
 
     @Shadow
     @Final
-    private static Logger LOGGER;
+    private MinecraftClient client;
 
     @Shadow
-    @Final
-    private MinecraftClient client;
+    private static void drawCuboidShapeOutline(MatrixStack matrices, VertexConsumer vertexConsumer, VoxelShape shape, double offsetX, double offsetY, double offsetZ, float red, float green, float blue, float alpha) {
+        throw new UnsupportedOperationException("Implemented via mixin");
+    }
 
     @Inject(
             method = "drawBlockOutline",
-            at = @At("HEAD"), cancellable = true
+            at = @At("HEAD")
     )
-    private void drawBlockOutline(MatrixStack matrices, VertexConsumer vertexConsumer, double x, double y, double z, OutlineRenderState state, int i, CallbackInfo CIR) {
+    private void drawBlockOutline(MatrixStack matrices, VertexConsumer vertexConsumer, Entity entity, double cameraX, double cameraY, double cameraZ, BlockPos pos, BlockState state, CallbackInfo ci) {
         var config = MiningLimits.CONFIG;
 
-        if (config.showOutline) {
-            BlockPos blockPos = state.pos();
+        assert world != null;
+        assert client.player != null;
 
-            assert world != null;
-            assert client.player != null;
-
+        if (config.showOutline && !client.player.isInCreativeMode()) {
             var limitedChunk = world.getWorldChunk(BlockPos.fromLong(BlockPos.asLong(config.limitedChunkX, 0, config.limitedChunkZ)));
-            var posChunk = world.getWorldChunk(blockPos);
+            var posChunk = world.getWorldChunk(pos);
 
             if ((config.shouldRun && !config.shiftBypass) || (config.shouldRun && !client.player.isSneaking())) {
                 if (
-                        (config.hasHighHeight && blockPos.getY() > config.highHeight || config.hasLowHeight && blockPos.getY() < config.lowHeight)
+                        (config.hasHighHeight && pos.getY() > config.highHeight || config.hasLowHeight && pos.getY() < config.lowHeight)
                                 || (config.isChunkLimited && !posChunk.equals(limitedChunk))
                 ) {
-                    //MiningLimits.LOGGER.info("red outline");
-                    VertexRendering.drawOutline(matrices, vertexConsumer, state.shape(), blockPos.getX() - x, blockPos.getY() - y, blockPos.getZ() - z, config.outlineColor.toInt());
-                    CIR.cancel();
+                    drawCuboidShapeOutline(
+                        matrices,
+                        vertexConsumer,
+                        state.getOutlineShape(this.world, pos, ShapeContext.of(entity)),
+                        pos.getX() - cameraX,
+                        pos.getY() - cameraY,
+                        pos.getZ() - cameraZ,
+                        (float) config.outlineColor.r() /255,
+                        (float) config.outlineColor.g() /255,
+                        (float) config.outlineColor.b() /255,
+                        (float) config.outlineColor.a() /255
+                    );
                 }
             }
         }
