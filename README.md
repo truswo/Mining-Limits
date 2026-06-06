@@ -4,13 +4,13 @@
 
 #   Mining Limits
 
-Adds a configurable barrier to where the player can mine.
+Adds features related to mining and ways to control it in a better way.
 
 </div>
 
 ## Overview
 
-Adds a configurable barrier to where the player can mine.
+Mining Limits lets you have more control over the stuff you are mining, it allows you to do things like **limiting you mining space to a single chunk** and **controlling how much time it takes for you can break blocks.**
 
 ---
 ## Features
@@ -34,6 +34,9 @@ Adds a configurable barrier to where the player can mine.
     - You can choose any color you'd want for the outline, the color and opacity are completely customizable
 
     - _Note: This may interfere with mods that change the block's outline, so it also has an option to turn this off_
+
+- **Adds an option to turn off Instant Mining and lets you control how long it takes to break a block while you are sneaking**
+  - _Note: Having a breaking speed higher than your normal one will just use your normal speed instead_
 
 - **[Mod Menu](https://modrinth.com/project/mOgUt4GM) configuration support**
 

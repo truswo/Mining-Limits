@@ -29,12 +29,18 @@
   "mining-limits.config.shiftBypass.prefix": "§lOutras Configurações:§r",
     "mining-limits.config.shiftBypass": "  Ignorar se estiver agachando",
     "mining-limits.config.shiftBypass.desc": "Autoriza a quebra de blocos se o player estiver agachando",
+    "mining-limits.config.carefulBreaking": "  Sem Instant Mining",
+    "mining-limits.config.carefulBreaking.desc": "Reduz a velocidade da quebra de blocos enquanto o player estiver agachando",
+    "mining-limits.config.carefulBreakingSpeed": "    Velocidade de Quebra:",
+    "mining-limits.config.carefulBreakingSpeed.desc": "Coloque em 1 se você só quiser desativar o Instant Mining (Se a sua velocidade de quebra padrão for menor que a velocidade de quebra do bloco, colocar essa opção em 1 só ira usar a sua velocidade de quebra padrão)",
     "mining-limits.config.showOutline": "  Mostrar a outline de blocos (Contorno)",
     "mining-limits.config.showOutline.desc": "Renderiza uma outline colorido em blocos fora da barreira (Contorno)",
     "mining-limits.config.outlineColor": "  Cor da outline (Contorno)",
+    "mining-limits.config.debugMode": "  Modo de Debug",
+    "mining-limits.config.debugMode.desc": "Coloca o que o mod mod está fazendo nas logs do jogo (Só use se você estiver tentando arrumar alguma coisa, ligar isso pode causar uma má performance)",
 
   "mining-limits.message.highHeight": "§cAltura do bloco está acima dos limites de mineração (Muito Alto)",
   "mining-limits.message.lowHeight": "§cAltura do bloco está abaixo dos limites de mineração (Muito Baixo)",
   "mining-limits.message.limitedChunk": "§cO bloco está fora dos limites da chunk (Fora da Barreira)",
-  "mining-limits.message.other": "§cO bloco está fora dos limites de mineração (Nenhuma Razão Provida)"
+  "mining-limits.message.other": "§cO bloco está fora dos limites de mineração (Nenhuma Razão Especificada)"
 }
