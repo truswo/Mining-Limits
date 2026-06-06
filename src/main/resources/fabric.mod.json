@@ -3,14 +3,14 @@
   "id": "mining-limits",
   "version": "${version}",
   "name": "Mining Limits",
-  "description": "Adds a configurable limit to where the player can mine.",
+  "description": "Adds features related to mining and ways to control it in a better way.",
   "authors": [
     "Lucy (truswo/wzhazy)"
   ],
   "contact": {
-    "homepage": "https://modrinth.com/mod/accidental-sweep",
-    "sources": "https://github.com/truswo/Accidental-Sweep",
-    "issues": "https://github.com/truswo/Accidental-Sweep/issues"
+    "homepage": "https://modrinth.com/project/mQGRdDm4",
+    "sources": "https://github.com/truswo/Mining-Limits",
+    "issues": "https://github.com/truswo/Mining-Limits/issues"
   },
 
   "license": "MIT",
