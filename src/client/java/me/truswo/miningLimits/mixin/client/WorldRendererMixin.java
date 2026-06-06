@@ -15,12 +15,18 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WorldRenderer.class)
 public class WorldRendererMixin {
+
+    @Unique
+    boolean msg1 = false;
+    @Unique
+    boolean msg2 = false;
 
     @Shadow
     private @Nullable ClientWorld world;
@@ -53,6 +59,12 @@ public class WorldRendererMixin {
                         (config.hasHighHeight && pos.getY() > config.highHeight || config.hasLowHeight && pos.getY() < config.lowHeight)
                                 || (config.isChunkLimited && !posChunk.equals(limitedChunk))
                 ) {
+                    if (config.debugMode && !msg1) {
+                        msg2 = false;
+                        msg1 = true;
+                        MiningLimits.LOGGER.info("[MiningLimits] Rendering highlight");
+                    }
+
                     drawCuboidShapeOutline(
                         matrices,
                         vertexConsumer,
@@ -67,6 +79,10 @@ public class WorldRendererMixin {
                     );
                 }
             }
+        } else if (client.player.isInCreativeMode() && config.debugMode && !msg2) {
+            msg1 = false;
+            msg2 = true;
+            MiningLimits.LOGGER.info("[MiningLimits] Outline not rendered (player is in Creative/Spectator Mode)");
         }
     }
 }

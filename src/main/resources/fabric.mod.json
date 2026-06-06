@@ -3,7 +3,7 @@
   "id": "mining-limits",
   "version": "${version}",
   "name": "Mining Limits",
-  "description": "Adds a configurable limit to where the player can mine.",
+  "description": "Adds features related to mining and ways to control it in a better way.",
   "authors": [
     "Lucy (truswo/wzhazy)"
   ],

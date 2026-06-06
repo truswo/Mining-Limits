@@ -3,6 +3,7 @@ package me.truswo.miningLimits.config;
 import me.fzzyhmstrs.fzzy_config.config.Config;
 import me.fzzyhmstrs.fzzy_config.config.ConfigGroup;
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedColor;
+import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedFloat;
 import net.minecraft.util.Identifier;
 
 import static me.truswo.miningLimits.MiningLimits.MOD_ID;
@@ -25,6 +26,10 @@ public class ModConfig extends Config {
 
     @ConfigGroup.Pop
     public boolean shiftBypass = true;
+    public boolean carefulBreaking = true;
+    @ValidatedFloat.Restrict(min = 0f, max = 1f)
+    public float carefulBreakingSpeed = 1f;
     public boolean showOutline = true;
-    public ValidatedColor outlineColor = new ValidatedColor(255, 0, 0, 255);
+    public ValidatedColor outlineColor = new ValidatedColor(255, 0, 0, 64);
+    public boolean debugMode = false;
 }
