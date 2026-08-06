@@ -33,21 +33,21 @@ public abstract class PlayerEntityMixin {
         var plrEntity = ((PlayerEntity)(Object)this);
 
         var posY = pos.getY();
+        var block = world.getBlockState(pos).getBlock();
 
         var limitedChunk = world.getWorldChunk(BlockPos.fromLong(BlockPos.asLong(config.limitedChunkX, 0, config.limitedChunkZ)));
         var posChunk = world.getWorldChunk(pos);
 
         if (config.shouldRun && gameMode.isSurvivalLike() && (limitedChunk.getPos().x != 0 || posChunk.getPos().x != 0)) {
-
             if (
                 ((config.hasHighHeight && posY > config.highHeight || config.hasLowHeight && posY < config.lowHeight)
-                || (config.isChunkLimited && !posChunk.equals(limitedChunk)))
-            ) {
+                || (config.isChunkLimited && !posChunk.equals(limitedChunk) || (config.isBlockLimited && !config.allowedBlocks.contains(block.getTranslationKey()))))
+                ) {
                 if (!config.shiftBypass || (config.shiftBypass && !plrEntity.isSneaking())
                 ) {
                     if (config.debugMode && !msg1) {
                         msg1 = true;
-                        MiningLimits.LOGGER.info("[MiningLimits] Chunk limits bypassed");
+                        MiningLimits.LOGGER.info("[MiningLimits] Mining limits bypassed");
                     }
 
                     CIR.setReturnValue(true);
@@ -57,13 +57,15 @@ public abstract class PlayerEntityMixin {
                         plrEntity.sendMessage(Text.translatable("mining-limits.message.lowHeight"), true);
                     } else if (config.isChunkLimited && !posChunk.equals(limitedChunk)) {
                         plrEntity.sendMessage(Text.translatable("mining-limits.message.limitedChunk"), true);
+                    } else if (config.isBlockLimited && !config.allowedBlocks.contains(block.getTranslationKey())) {
+                        plrEntity.sendMessage(Text.translatable("mining-limits.message.notAllowedBlock"), true);
                     } else {
                         plrEntity.sendMessage(Text.translatable("mining-limits.message.other"), true);
                     }
                 }
             }
         } else if (!gameMode.isSurvivalLike() && config.debugMode) {
-            MiningLimits.LOGGER.info("[MiningLimits] Breaking was not bypasses (player is in Creative/Spectator Mode, automatic bypass)");
+            MiningLimits.LOGGER.info("[MiningLimits] Breaking was not bypassed (player is in Creative/Spectator Mode, automatic bypass)");
         }
     }
     @ModifyReturnValue(

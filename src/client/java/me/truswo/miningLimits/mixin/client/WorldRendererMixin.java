@@ -50,6 +50,8 @@ public class WorldRendererMixin {
         assert world != null;
         assert client.player != null;
 
+        var block = world.getBlockState(pos).getBlock();
+
         if (config.showOutline && !client.player.isInCreativeMode()) {
             var limitedChunk = world.getWorldChunk(BlockPos.fromLong(BlockPos.asLong(config.limitedChunkX, 0, config.limitedChunkZ)));
             var posChunk = world.getWorldChunk(pos);
@@ -58,6 +60,7 @@ public class WorldRendererMixin {
                 if (
                         (config.hasHighHeight && pos.getY() > config.highHeight || config.hasLowHeight && pos.getY() < config.lowHeight)
                                 || (config.isChunkLimited && !posChunk.equals(limitedChunk))
+                                || (config.isBlockLimited && !config.allowedBlocks.contains(block.getTranslationKey()))
                 ) {
                     if (config.debugMode && !msg1) {
                         msg2 = false;

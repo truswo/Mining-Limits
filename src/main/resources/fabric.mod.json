@@ -16,7 +16,7 @@
   "license": "MIT",
   "icon": "icon.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "fabric-datagen": [
       "me.truswo.miningLimits.client.MiningLimitsDataGenerator"
