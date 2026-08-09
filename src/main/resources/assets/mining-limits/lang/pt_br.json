@@ -12,7 +12,9 @@
   "mining-limits.config.hasHighHeight": "  Altura máxima de mineração",
   "mining-limits.config.hasHighHeight.desc": "Ativa/Desative uma barreira máxima de altura para mineração",
   "mining-limits.config.isChunkLimited": "  Barreira de mineração de chunk",
-  "mining-limits.config.isChunkLimited.desc": "Limita a mineração para uma única chunk (lowHeight e highHeight ainda se aplicam)",
+  "mining-limits.config.isChunkLimited.desc": "Limita a mineração para uma única chunk (Outras configurações ainda se aplicam)",
+  "mining-limits.config.isBlockLimited": "  Limite de mineração de bloco",
+  "mining-limits.config.isBlockLimited.desc": "Limita a mineração a uma lista especificada de blocos (Outras configurações ainda se aplicam)",
 
   "mining-limits.config.lowHeight.prefix": "§lPosicionamento:§r",
   "mining-limits.config.lowHeight": "   Altura mínima permitida:",
@@ -31,16 +33,20 @@
   "mining-limits.config.shiftBypass.desc": "Autoriza a quebra de blocos se o player estiver agachando",
   "mining-limits.config.carefulBreaking": "  Sem Instant Mining",
   "mining-limits.config.carefulBreaking.desc": "Reduz a velocidade da quebra de blocos enquanto o player estiver agachando",
-  "mining-limits.config.carefulBreakingSpeed": "    Velocidade de Quebra:",
+  "mining-limits.config.carefulBreakingSpeed": "       Velocidade de Quebra:",
   "mining-limits.config.carefulBreakingSpeed.desc": "Se a sua velocidade de quebra padrão for menor que a velocidade de quebra do bloco, colocar essa opção em 1 só ira usar a sua velocidade de quebra padrão",
+  "mining-limits.config.allowedBlocks": "  Lista de blocos permitidos",
+  "mining-limits.config.allowedBlocks.desc": "Lista de blocos que são §lpermitidos§r a mineração. \n§eINFO:§r Novas entradas §ldevem§r seguir esse padrão: \n§o\"block.[ID_DO_MOD].[ID_DO_BLOCO]\"§r ou §o\"block.minecraft.[ID_DO_BLOCO]\"§r",
   "mining-limits.config.showOutline": "  Mostrar a outline de blocos (Contorno)",
   "mining-limits.config.showOutline.desc": "Renderiza uma outline colorido em blocos fora da barreira (Contorno)",
   "mining-limits.config.outlineColor": "  Cor da outline (Contorno)",
+  "mining-limits.config.outlineColor.desc": "A cor da outline que aparece em blocos não permitidos",
   "mining-limits.config.debugMode": "  Modo de Debug",
-  "mining-limits.config.debugMode.desc": "Coloca o que o mod mod está fazendo nas logs do jogo (Só use se você estiver tentando arrumar alguma coisa, ligar isso pode causar uma má performance)",
+  "mining-limits.config.debugMode.desc": "Mostra o que o mod mod está fazendo nas logs do jogo (Só use se você estiver tentando arrumar alguma coisa, ligar isso pode causar uma má performance)",
 
   "mining-limits.message.highHeight": "§cAltura do bloco está acima dos limites de mineração (Muito Alto)",
   "mining-limits.message.lowHeight": "§cAltura do bloco está abaixo dos limites de mineração (Muito Baixo)",
   "mining-limits.message.limitedChunk": "§cO bloco está fora dos limites da chunk (Fora da Barreira)",
+  "mining-limits.message.notAllowedBlock": "§cA mineração desse bloco não é permitida (Não foi achado em allowedBlocks)",
   "mining-limits.message.other": "§cO bloco está fora dos limites de mineração (Nenhuma Razão Especificada)"
 }

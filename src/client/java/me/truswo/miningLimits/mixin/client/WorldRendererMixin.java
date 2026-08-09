@@ -37,14 +37,18 @@ public class WorldRendererMixin {
             method = "drawBlockOutline",
             at = @At("HEAD"), cancellable = true
     )
-    private void drawBlockOutline(MatrixStack matrices, VertexConsumer vertexConsumer, double x, double y, double z, OutlineRenderState state, int i, CallbackInfo CIR) {
+    private void drawBlockOutline(MatrixStack matrices, VertexConsumer vertexConsumer, double x, double y, double z, OutlineRenderState state, int i, CallbackInfo ci) {
         var config = MiningLimits.CONFIG;
 
         assert world != null;
         assert client.player != null;
 
+        BlockPos blockPos = state.pos();
+
+        var block = world.getBlockState(blockPos).getBlock();
+
         if (config.showOutline && !client.player.isInCreativeMode()) {
-            BlockPos blockPos = state.pos();
+
 
             var limitedChunk = world.getWorldChunk(BlockPos.fromLong(BlockPos.asLong(config.limitedChunkX, 0, config.limitedChunkZ)));
             var posChunk = world.getWorldChunk(blockPos);
@@ -53,6 +57,7 @@ public class WorldRendererMixin {
                 if (
                         (config.hasHighHeight && blockPos.getY() > config.highHeight || config.hasLowHeight && blockPos.getY() < config.lowHeight)
                                 || (config.isChunkLimited && !posChunk.equals(limitedChunk))
+                                || (config.isBlockLimited && !config.allowedBlocks.contains(block.getTranslationKey()))
                 ) {
                     if (config.debugMode && !msg1) {
                         msg2 = false;
@@ -60,7 +65,7 @@ public class WorldRendererMixin {
                         MiningLimits.LOGGER.info("[MiningLimits] Rendering highlight");
                     }
                     VertexRendering.drawOutline(matrices, vertexConsumer, state.shape(), blockPos.getX() - x, blockPos.getY() - y, blockPos.getZ() - z, config.outlineColor.toInt());
-                    CIR.cancel();
+                    ci.cancel();
                 }
             }
         } else if (client.player.isInCreativeMode() && config.debugMode && !msg2) {

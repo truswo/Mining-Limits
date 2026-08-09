@@ -1,5 +1,5 @@
 {
-  "modmenu.descriptionTranslation.mining-limits": "Adds a configurable barrier to where the player can mine.",
+  "modmenu.descriptionTranslation.mining-limits": "Adds features related to mining and ways to control it in a better way",
 
   "mining-limits.config":  "Mining Limits Settings",
 
@@ -12,7 +12,9 @@
   "mining-limits.config.hasHighHeight": "  Highest height mining limit",
   "mining-limits.config.hasHighHeight.desc": "Enables/Disables a high height limit for mining",
   "mining-limits.config.isChunkLimited": "  Chunk mining limit",
-  "mining-limits.config.isChunkLimited.desc": "Limits mining to a single chunk (lowHeight and highHeight still applies)",
+  "mining-limits.config.isChunkLimited.desc": "Limits mining to a single chunk (Other settings still applies)",
+  "mining-limits.config.isBlockLimited": "  Block mining limit",
+  "mining-limits.config.isBlockLimited.desc": "Limits mining to a specified list of blocks (Other settings still applies)",
 
   "mining-limits.config.lowHeight.prefix": "§lPositioning:§r",
   "mining-limits.config.lowHeight": "   Lowest height allowed:",
@@ -31,16 +33,20 @@
   "mining-limits.config.shiftBypass.desc": "Allows block breaking when player is sneaking",
   "mining-limits.config.carefulBreaking": "  No Instant Mining",
   "mining-limits.config.carefulBreaking.desc": "Reduces the block breaking speed while the player is sneaking",
-  "mining-limits.config.carefulBreakingSpeed": "    Breaking Speed:",
+  "mining-limits.config.carefulBreakingSpeed": "       Breaking Speed:",
   "mining-limits.config.carefulBreakingSpeed.desc": "If your normal breaking speed is under the block's breaking speed, setting this to 1 will just use your normal breaking speed",
+  "mining-limits.config.allowedBlocks": "  Allowed Mining Blocks List",
+  "mining-limits.config.allowedBlocks.desc": "List of blocks that you are §lallowed§r to mine. \n§eINFO:§r New entries §lshould§r follow this pattern: \n§o\"block.[MOD_ID].[BLOCK_ID]\"§r or §o\"block.minecraft.[BLOCK_ID]\"§r",
   "mining-limits.config.showOutline": "  Show block's outline",
   "mining-limits.config.showOutline.desc": "Renders an colored outline on blocks outside limits",
   "mining-limits.config.outlineColor": "  Outline color",
+  "mining-limits.config.outlineColor.desc": "The color of the outline that appears on non allowed blocks",
   "mining-limits.config.debugMode": "  Debug Mode",
-  "mining-limits.config.debugMode.desc": "Puts what the mod is doing in the game logs (Only use if you are trying to fix something, turning this on could result in poor performance)",
+  "mining-limits.config.debugMode.desc": "Shows what the mod is doing in the game logs (Only use if you are trying to fix something, turning this on could result in poor performance)",
 
   "mining-limits.message.highHeight": "§cBlock height is over mining limits (Too High)",
   "mining-limits.message.lowHeight": "§cBlock height is under mining limits (Too Low)",
   "mining-limits.message.limitedChunk": "§cBlock is outside chunk borders (Outside Borders)",
+  "mining-limits.message.notAllowedBlock": "§cMining this block is not allowed (Not found in allowedBlocks)",
   "mining-limits.message.other": "§cBlock is outside of mining limits (No Provided Reason)"
 }
