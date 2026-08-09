@@ -80,12 +80,12 @@ public abstract class PlayerEntityMixin {
         if (config.carefulBreaking && config.shouldRun) {
             if (
                     plrEntity.isSneaking()
-                            && plrEntity.isOnGround()
-                            && !plrEntity.isSubmergedInWater()
+                    && plrEntity.isOnGround()
+                    && !plrEntity.isSubmergedInWater()
             ) {
                 if (
                         original >= f
-                                || (original * config.carefulBreakingSpeed >= f)
+                        || (original * config.carefulBreakingSpeed >= f)
                 ) {
                     if (config.debugMode && !msg3) {
                         msg4 = false;
